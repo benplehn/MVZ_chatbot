@@ -27,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://www.hausaerzte-kehl.de",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = ["content-type", "my-custom-header"]
 
 # Application definition
 
@@ -35,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     'chatbot_app',
+    'corsheaders',
     "rest_framework",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -46,6 +55,8 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -107,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "UTC+2"
 
 USE_I18N = True
 
