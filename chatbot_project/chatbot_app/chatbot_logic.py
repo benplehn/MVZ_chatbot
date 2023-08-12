@@ -1,3 +1,5 @@
+import string
+
 def get_bot_response(user_message):
     responses = {
     "hallo": "Hallo! Wie kann ich Ihnen helfen?",
@@ -45,10 +47,13 @@ def get_bot_response(user_message):
     
     }
 
+    responses = {k.lower(): v for k, v in responses.items()}
 
-    # Convert user message to lowercase and remove any punctuation
+
+     # Convert user message to lowercase and strip
     user_message = user_message.lower().strip()
 
-     # Get the response from the dictionary, if it exists
+    # Get the response from the dictionary, if it exists
     return responses.get(user_message, "Es tut mir leid, aber ich habe die Frage nicht verstanden.")
+
 
