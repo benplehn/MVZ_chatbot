@@ -5,3 +5,9 @@ class ChatMessageSerializers(serializers.ModelSerializer):
     class Meta:
         model = ChatMessage
         fields = '__all__'
+
+class ChatSessionSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ChatSession
+        fiels = '__all__'
+        
