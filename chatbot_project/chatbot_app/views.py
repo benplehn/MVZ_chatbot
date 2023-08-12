@@ -5,8 +5,9 @@ from rest_framework.decorators import api_view
 
 from .models import ChatMessage, ChatSession
 from .serializers import ChatMessageSerializer, ChatSessionSerializer
-
 from .chatbot_logic import get_bot_response
+
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -33,3 +34,7 @@ def chatbot_view(request):
     ChatMessage.objects.create(session=chat_session, sender=ChatMessage.BOT, content=bot_response)
     
     return Response({"response": bot_response})
+
+
+def home(request):
+    return HttpResponse("Welcome to the Chatbot Project!")
