@@ -36,5 +36,16 @@ def chatbot_view(request):
     return Response({"response": bot_response})
 
 
+@api_view(['GET'])
+def get_last_bot_reply(request):
+    last_reply = ChatMessage.objects.filter(sender=ChatMessage.BOT).last()
+    if last_reply:
+        return Response({"response": last_reply.content})
+    return Response({"response": "No reply found."})
+
+
+
+
+
 def home(request):
     return HttpResponse("Welcome to the Chatbot Project!")
