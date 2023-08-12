@@ -1,7 +1,7 @@
 from rest_framework import generics
 
 from .models import ChatMessage, ChatSession
-from .serializers import ChatMessageSerializers, ChatSessionSerializers
+from .serializers import ChatMessageSerializer, ChatSessionSerializer
 
 # Create your views here.
 
