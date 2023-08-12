@@ -19,12 +19,17 @@ class ChatMessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChatMessageSerializer
 
 
-
 @api_view(['POST'])
 def chatbot_view(request):
     user_message = request.data.get('message', '')
     bot_response = get_bot_response(user_message)
-    ChatMessage.objects.create(sender=ChatMessage.USER, content=user_message)
-    ChatMessage.objects.create(sender=ChatMessage.BOT, content=bot_response)
 
+    # Create a new ChatSession first
+    chat_session = ChatSession()
+    chat_session.save()
+
+    # Now, create ChatMessage instances associated with the chat_session
+    ChatMessage.objects.create(session=chat_session, sender=ChatMessage.USER, content=user_message)
+    ChatMessage.objects.create(session=chat_session, sender=ChatMessage.BOT, content=bot_response)
+    
     return Response({"response": bot_response})
