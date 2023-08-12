@@ -22,6 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-(p$4gj!h4jp&wss&st*$8pw7+u9yq6-8_4q*mwd@u^gqtori^s"
 
+
+CERTIFICATE_FILE = 'path_to_your_directory/localhost+2.pem'
+KEY_FILE = 'path_to_your_directory/localhost+2-key.pem'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -118,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC+2"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
