@@ -7,6 +7,11 @@ from .serializers import ChatMessageSerializers, ChatSessionSerializers
 
 class ChatMessageListCreateView(generics.ListCreateAPIView):
     queryset = ChatMessage.objects.all()
-    serializer_class = ChatMessageSerializers
+    serializer_class = ChatMessageSerializer
 
-class Chat
+class ChatMessageDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ChatMessage.objects.all()
+    serializer_class = ChatMessageSerializer
+
+
+
