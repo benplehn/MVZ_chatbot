@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, throttle_classes
 from django.shortcuts import render
 
 from .models import ChatMessage, ChatSession
@@ -8,6 +8,8 @@ from .serializers import ChatMessageSerializer, ChatSessionSerializer
 from .chatbot_logic import get_bot_response
 
 from django.http import HttpResponse
+from rest_framework.throttling import UserRateThrottle
+
 
 # Create your views here.
 
@@ -21,6 +23,7 @@ class ChatMessageDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 @api_view(['POST'])
+@throttle_classes([UserRateThrottle])
 def chatbot_view(request):
     user_message = request.data.get('message', '')
     bot_response = get_bot_response(user_message)
